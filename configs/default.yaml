@@ -1,0 +1,41 @@
+seed: 42
+
+data:
+  train_csv: "data/train.csv"
+  test_csv: "data/test.csv"
+  label_col: "Label"
+  drop_cols: []
+  # 若标签需要映射/合并，可在这里配置；空表示不处理
+  label_map: {}
+
+preprocess:
+  test_size: 0.2        # 当 test_csv 不存在时，从 train_csv 切分
+  standardize: true
+  max_rows: null        # 调试用：限制读取行数（null 表示不限制）
+
+teacher:
+  model_type: "mlp"      # mlp | tab_transformer
+  hidden_sizes: [256, 128]
+  dropout: 0.2
+  lr: 0.001
+  batch_size: 512
+  epochs: 20
+  weight_decay: 0.00001
+  # 仅当 model_type=tab_transformer 时使用
+  d_model: 64
+  n_heads: 4
+  n_layers: 2
+  ff_mult: 4
+
+distill:
+  temperature: 3.0
+  alpha: 0.5            # 软标签权重（0~1，越大越依赖教师）
+  max_bins: 256         # EBM 分箱数
+
+eval:
+  latency_runs: 200     # 延迟测量重复次数（取中位数/分位数）
+  explain_samples: 20   # 导出解释的样本数
+  topk_features: 15
+
+output:
+  runs_dir: "runs"

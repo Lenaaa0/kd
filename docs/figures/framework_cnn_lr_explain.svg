@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 660" style="font-family: 'Helvetica Neue', Arial, sans-serif; background: #fafbfc;">
+  <defs>
+    <!-- �4� -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrowhead-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowhead-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b5cf6"/>
+    </marker>
+
+    <!-- 4q�\ -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#64748b" flood-opacity="0.15"/>
+    </filter>
+    <filter id="shadow-sm" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#64748b" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- ========== � ========== -->
+  <text x="550" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#1e293b" letter-spacing="0.5">
+    Dual-Student Distillation F�
+  </text>
+  <text x="550" y="60" text-anchor="middle" font-size="13" fill="#64748b">
+    CNN  {��r  |  LR  ���'���y� + CNN logits	
+  </text>
+
+  <!-- ========== Z���� / �r ========== -->
+  <line x1="50" y1="82" x2="1050" y2="82" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="8,4"/>
+
+  <!-- Phase labels -->
+  <rect x="60" y="68" width="70" height="24" rx="12" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="95" y="84" text-anchor="middle" font-size="12" font-weight="600" fill="#0369a1">��6�</text>
+
+  <rect x="760" y="68" width="70" height="24" rx="12" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="795" y="84" text-anchor="middle" font-size="12" font-weight="600" fill="#15803d">�r6�</text>
+
+  <!-- ========== ��A�pnW ========== -->
+  <rect x="60" y="100" width="180" height="50" rx="10" fill="white" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="150" y="122" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">��A�pn</text>
+  <text x="150" y="138" text-anchor="middle" font-size="11" fill="#94a3b8">N a7, + �~</text>
+
+  <!-- A� -> � -->
+  <line x1="240" y1="125" x2="280" y2="125" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="260" y="118" text-anchor="middle" font-size="11" fill="#64748b">
+6</text>
+
+  <!-- ========== Y Transformer ========== -->
+  <rect x="280" y="100" width="200" height="50" rx="10" fill="white" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="380" y="122" text-anchor="middle" font-size="13" font-weight="600" fill="#475569">Transformer Y</text>
+  <text x="380" y="138" text-anchor="middle" font-size="11" fill="#94a3b8">
+P�gŭ�6�(</text>
+
+  <!-- Y -> soft targets -->
+  <line x1="380" y1="150" x2="380" y2="185" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="400" y="172" text-anchor="middle" font-size="11" fill="#64748b">o~</text>
+
+  <!-- ========== o~�P ========== -->
+  <rect x="310" y="185" width="140" height="36" rx="8" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <text x="380" y="207" text-anchor="middle" font-size="11" font-weight="600" fill="#92400e">Soft Targets</text>
+  <text x="380" y="218" text-anchor="middle" font-size="10" fill="#a16207">[p_chat, p_voip, p_web, ...]</text>
+
+  <!-- ========== CNN f ========== -->
+  <rect x="280" y="255" width="200" height="52" rx="10" fill="white" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="380" y="277" text-anchor="middle" font-size="13" font-weight="700" fill="#1d4ed8">CNN f</text>
+  <text x="380" y="293" text-anchor="middle" font-size="11" fill="#64748b">KL c��� � CͅY��</text>
+
+  <!-- A� -> CNN -->
+  <line x1="240" y1="125" x2="290" y2="281" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowhead)"/>
+  <text x="252" y="215" text-anchor="middle" font-size="11" fill="#64748b">��A�</text>
+
+  <!-- o~ -> CNN -->
+  <line x1="380" y1="221" x2="380" y2="255" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrowhead-orange)"/>
+  <text x="410" y="242" text-anchor="middle" font-size="11" fill="#d97706">o~</text>
+
+  <!-- CNN -> logits -->
+  <line x1="480" y1="281" x2="545" y2="281" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrowhead-blue)"/>
+  <text x="513" y="274" text-anchor="middle" font-size="11" fill="#3b82f6">logits</text>
+
+  <!-- CNN ���Plogits + soft -->
+  <rect x="545" y="258" width="160" height="46" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <text x="625" y="277" text-anchor="middle" font-size="11" font-weight="600" fill="#1e40af">CNN Logits + Softmax</text>
+  <text x="625" y="293" text-anchor="middle" font-size="10" fill="#3b82f6">[logit�, logit�, ..., logit_C]    [p�, p�, ..., p_C]</text>
+
+  <!-- ========== KL c�_1F ========== -->
+  <rect x="310" y="340" width="140" height="36" rx="8" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="380" y="358" text-anchor="middle" font-size="11" font-weight="600" fill="#991b1b">KL Div Loss</text>
+  <text x="380" y="370" text-anchor="middle" font-size="10" fill="#b91c1c">softmax(CNN/T) vs softmax(T/T)</text>
+
+  <!-- o~ -> KL loss -->
+  <line x1="380" y1="221" x2="380" y2="340" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="380" y1="340" x2="480" y2="281" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- CNN -> KL loss -->
+  <line x1="430" y1="307" x2="380" y2="358" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- KL -> ��� � -->
+  <line x1="380" y1="376" x2="380" y2="410" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowhead-red)"/>
+  <text x="397" y="396" text-anchor="middle" font-size="11" fill="#ef4444">� �</text>
+
+  <!-- ========== CNN C���� ========== -->
+  <rect x="300" y="410" width="160" height="30" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text x="380" y="429" text-anchor="middle" font-size="11" font-weight="600" fill="#15803d">CNN C���</text>
+
+  <!-- ========== LR ���!� ========== -->
+  <!-- �
+��y��� -->
+  <rect x="530" y="100" width="160" height="50" rx="10" fill="white" stroke="#22c55e" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="610" y="122" text-anchor="middle" font-size="13" font-weight="600" fill="#166534">��ߡy�</text>
+  <text x="610" y="138" text-anchor="middle" font-size="11" fill="#64748b">�/��ߡ (6�)</text>
+
+  <!-- A� -> ��y� -->
+  <line x1="240" y1="125" x2="300" y2="125" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="300" y1="125" x2="530" y2="125" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="415" y="118" text-anchor="middle" font-size="11" fill="#64748b">ߡ��</text>
+
+  <!-- ��y� -> concat -->
+  <line x1="690" y1="125" x2="730" y2="175" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowhead-green)"/>
+  <text x="724" y="145" text-anchor="middle" font-size="11" fill="#15803d">��</text>
+
+  <!-- CNN logits -> concat -->
+  <line x1="545" y1="281" x2="730" y2="215" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrowhead-blue)"/>
+  <text x="700" y="245" text-anchor="middle" font-size="11" fill="#1d4ed8">CNN logits</text>
+
+  <!-- concat �P -->
+  <rect x="730" y="155" width="120" height="52" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <text x="790" y="178" text-anchor="middle" font-size="11" font-weight="600" fill="#5b21b6">Concat</text>
+  <text x="790" y="193" text-anchor="middle" font-size="10" fill="#7c3aed">[��y� | CNN logits]</text>
+  <text x="790" y="205" text-anchor="middle" font-size="10" fill="#7c3aed">H 12 ��e</text>
+
+  <!-- concat -> LR -->
+  <line x1="790" y1="207" x2="790" y2="255" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowhead-purple)"/>
+
+  <!-- ========== LR f���	========== -->
+  <rect x="700" y="255" width="180" height="52" rx="10" fill="white" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="790" y="277" text-anchor="middle" font-size="13" font-weight="700" fill="#6d28d9">LR ���f</text>
+  <text x="790" y="293" text-anchor="middle" font-size="11" fill="#64748b">Logistic Regression � �p = y�́'</text>
+
+  <!-- LR -> CE loss -->
+  <line x1="880" y1="281" x2="940" y2="281" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowhead-purple)"/>
+  <text x="910" y="274" text-anchor="middle" font-size="11" fill="#8b5cf6">�K</text>
+
+  <!-- CE loss -->
+  <rect x="940" y="258" width="110" height="46" rx="8" fill="#fdf4ff" stroke="#e879f9" stroke-width="1.5"/>
+  <text x="995" y="277" text-anchor="middle" font-size="11" font-weight="600" fill="#a21caf">CE Loss</text>
+  <text x="995" y="293" text-anchor="middle" font-size="10" fill="#a21caf">LogLoss (LR, y_true)</text>
+
+  <!-- �~ -> CE loss -->
+  <line x1="100" y1="150" x2="995" y2="281" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowhead)"/>
+  <text x="1020" y="220" text-anchor="middle" font-size="11" fill="#64748b">l~</text>
+
+  <!-- CE loss -> � � -->
+  <line x1="995" y1="304" x2="995" y2="340" stroke="#ef4444" stroke-width="1.5" marker-end="url(#arrowhead-red)"/>
+  <text x="1012" y="325" text-anchor="middle" font-size="11" fill="#ef4444">� �</text>
+
+  <!-- LR C��� -->
+  <rect x="940" y="340" width="110" height="30" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+  <text x="995" y="359" text-anchor="middle" font-size="11" font-weight="600" fill="#15803d">LR �p��</text>
+
+  <!-- ========== ���� -> �r ========== -->
+  <line x1="50" y1="430" x2="1050" y2="430" stroke="#cbd5e1" stroke-width="2"/>
+
+  <!-- ========== �r6� ========== -->
+
+  <!-- �r��A� -->
+  <rect x="80" y="455" width="150" height="46" rx="10" fill="white" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="155" y="476" text-anchor="middle" font-size="13" font-weight="600" fill="#334155">���A�</text>
+  <text x="155" y="492" text-anchor="middle" font-size="11" fill="#94a3b8">*�{�</text>
+
+  <!-- A� -> CNN �r -->
+  <line x1="230" y1="478" x2="285" y2="478" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <text x="258" y="472" text-anchor="middle" font-size="11" fill="#64748b">��A�</text>
+
+  <!-- ========== CNN �r!� ========== -->
+  <rect x="285" y="450" width="170" height="55" rx="12" fill="white" stroke="#3b82f6" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="370" y="475" text-anchor="middle" font-size="14" font-weight="700" fill="#1d4ed8">CNN �</text>
+  <text x="370" y="492" text-anchor="middle" font-size="11" fill="#64748b">���r � � Y(�</text>
+
+  <!-- CNN -> �K -->
+  <line x1="455" y1="478" x2="520" y2="478" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+  <rect x="520" y="455" width="110" height="46" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <text x="575" y="476" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">�KӜ </text>
+  <text x="575" y="492" text-anchor="middle" font-size="11" fill="#3b82f6">chat / voip / web / ...</text>
+
+  <!-- CNN logits -> Xc/
+( -->
+  <line x1="370" y1="505" x2="370" y2="555" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowhead-blue)"/>
+  <text x="388" y="535" text-anchor="middle" font-size="11" fill="#3b82f6">CNN logits</text>
+
+  <!-- logits X -->
+  <rect x="295" y="555" width="150" height="36" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="370" y="577" text-anchor="middle" font-size="11" fill="#1e40af">CNN logits (X)</text>
+
+  <!-- ��y� -> concat �r -->
+  <line x1="80" y1="478" x2="60" y2="478" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="60" y1="478" x2="60" y2="610" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="60" y1="610" x2="670" y2="610" stroke="#64748b" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="670" y1="610" x2="710" y2="595" stroke="#22c55e" stroke-width="1.5" marker-end="url(#arrowhead-green)"/>
+  <text x="50" y="548" text-anchor="middle" font-size="11" fill="#64748b">ߡy�</text>
+
+  <!-- X logits -> concat �r -->
+  <line x1="445" y1="573" x2="710" y2="595" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrowhead-blue)"/>
+  <text x="590" y="590" text-anchor="middle" font-size="11" fill="#3b82f6">X logits</text>
+
+  <!-- concat �r -->
+  <rect x="710" y="565" width="110" height="46" rx="8" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <text x="765" y="583" text-anchor="middle" font-size="11" font-weight="600" fill="#5b21b6">Concat</text>
+  <text x="765" y="598" text-anchor="middle" font-size="10" fill="#7c3aed">�� + logits</text>
+
+  <!-- concat -> LR �r -->
+  <line x1="820" y1="588" x2="860" y2="565" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowhead-purple)"/>
+
+  <!-- ========== LR �r����	========== -->
+  <rect x="860" y="530" width="150" height="55" rx="12" fill="white" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="935" y="555" text-anchor="middle" font-size="14" font-weight="700" fill="#6d28d9">LR ��</text>
+  <text x="935" y="572" text-anchor="middle" font-size="11" fill="#64748b">��� � �p = y�́'</text>
+
+  <!-- LR -> ��Ӝ -->
+  <line x1="1010" y1="558" x2="1045" y2="558" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#arrowhead-purple)"/>
+  <rect x="1045" y="530" width="0" height="55" rx="10" fill="#ede9fe" stroke="#a78bfa" stroke-width="1.5"/>
+
+  <!-- �ʓ� -->
+  <rect x="1035" y="500" width="50" height="116" rx="10" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <text x="1060" y="522" text-anchor="middle" font-size="11" font-weight="600" fill="#5b21b6">�ʓ�</text>
+  <line x1="1010" y1="558" x2="1035" y2="558" stroke="#8b5cf6" stroke-width="1.5"/>
+  <!-- �ʅ�L -->
+  <text x="1060" y="542" text-anchor="middle" font-size="9" fill="#7c3aed">��</text>
+  <text x="1060" y="555" text-anchor="middle" font-size="9" fill="#7c3aed">� chat</text>
+  <text x="1060" y="568" text-anchor="middle" font-size="9" fill="#7c3aed">��⨑</text>
+  <text x="1060" y="581" text-anchor="middle" font-size="9" fill="#7c3aed">� voip</text>
+  <text x="1060" y="594" text-anchor="middle" font-size="9" fill="#7c3aed">...</text>
+
+  <!-- ========== �� ========== -->
+  <!-- ��6�� -->
+  <rect x="60" y="448" width="220" height="68" rx="8" fill="#fefce8" stroke="#fcd34d" stroke-width="1.5"/>
+  <text x="75" y="466" font-size="11" font-weight="600" fill="#92400e">��6���</text>
+  <text x="75" y="482" font-size="10" fill="#a16207">" CNN ( KL c���YCͅ��</text>
+  <text x="75" y="496" font-size="10" fill="#a16207">" LR ( concat[��y�, CNN logits] ��</text>
+  <text x="75" y="510" font-size="10" fill="#a16207">" CNN logits (���
+���O</text>
+
+  <!-- �r6�� -->
+  <rect x="295" y="520" width="220" height="80" rx="8" fill="#dcfce7" stroke="#86efac" stroke-width="1.5"/>
+  <text x="310" y="538" font-size="11" font-weight="600" fill="#166534">�r6�y�</text>
+  <text x="310" y="554" font-size="10" fill="#15803d">" CNN �h���r� Y</text>
+  <text x="310" y="568" font-size="10" fill="#15803d">" CNN logits �X(� LR ����</text>
+  <text x="310" y="582" font-size="10" fill="#15803d">" LR �ʟ�y��{�!.</text>
+  <text x="310" y="596" font-size="10" fill="#15803d">  �� CNN logits �U�c�V</text>
+
+  <!-- ========== �� ========== -->
+  <rect x="60" y="540" width="220" height="95" rx="8" fill="white" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="75" y="560" font-size="11" font-weight="600" fill="#475569">pnA�</text>
+
+  <line x1="75" y1="578" x2="110" y2="578" stroke="#f59e0b" stroke-width="2"/>
+  <text x="120" y="582" font-size="10" fill="#64748b">o~Y � CNN	</text>
+
+  <line x1="75" y1="596" x2="110" y2="596" stroke="#3b82f6" stroke-width="2"/>
+  <text x="120" y="600" font-size="10" fill="#64748b">CNN logits� LR �e	</text>
+
+  <line x1="75" y1="614" x2="110" y2="614" stroke="#22c55e" stroke-width="2"/>
+  <text x="120" y="618" font-size="10" fill="#64748b">��ߡy�� LR �e	</text>
+
+  <line x1="75" y1="632" x2="110" y2="632" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="120" y="636" font-size="10" fill="#64748b">LR ����A</text>
+
+  <line x1="75" y1="650" x2="110" y2="650" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="120" y="654" font-size="10" fill="#64748b">��� �</text>
+
+</svg>

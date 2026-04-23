@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720"
+  font-family="Cambria Math, 'Times New Roman', Times, serif"
+  font-style="italic">
+
+  <defs>
+    <linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e3a5f"/>
+      <stop offset="100%" style="stop-color:#2c5282"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrBlk" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#2d3748"/>
+    </marker>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#4a5568"/>
+    </marker>
+  </defs>
+
+  <!-- ?????????????????????????????????????????????????? -->
+  <!--  ???                                         -->
+  <!-- ?????????????????????????????????????????????????? -->
+  <rect x="0" y="0" width="1200" height="56" fill="url(#hdrGrad)"/>
+  <text x="600" y="36" text-anchor="middle" fill="#ffffff" font-size="19" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    Figure 1: Dual-Student Distillation for Encrypted Traffic
+    (Transformer Teacher + CNN / LR Students)
+  </text>
+
+  <!-- ?????????????????????????????????????????????????? -->
+  <!--  ???                                         -->
+  <!-- ?????????????????????????????????????????????????? -->
+  <text x="150" y="86" text-anchor="middle" fill="#1a202c" font-size="13" font-weight="700"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Input</text>
+  <text x="390" y="86" text-anchor="middle" fill="#1a202c" font-size="13" font-weight="700"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Teacher (Transformer)</text>
+  <text x="630" y="86" text-anchor="middle" fill="#1a202c" font-size="13" font-weight="700"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Student-I: CNN</text>
+  <text x="870" y="86" text-anchor="middle" fill="#1a202c" font-size="13" font-weight="700"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Student-II: LR</text>
+  <text x="1080" y="86" text-anchor="middle" fill="#1a202c" font-size="13" font-weight="700"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Summary</text>
+
+  <!-- ?????????????????????????????????????????????????? -->
+  <!--  ?? Input                                     -->
+  <!-- ?????????????????????????????????????????????????? -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="110" width="220" height="520" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+  </g>
+  <text x="150" y="136" text-anchor="middle" fill="#2d3748" font-size="12" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Encrypted Traffic</text>
+
+  <!-- Packet sequence tensor -->
+  <rect x="60" y="150" width="180" height="44" rx="4" fill="#edf2f7" stroke="#a0aec0"/>
+  <text x="150" y="176" text-anchor="middle" fill="#2d3748" font-size="11"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Packet Sequence Tensor</text>
+  <path d="M150 194 L150 218" stroke="#4a5568" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- X (seq_len x n_feat) -->
+  <rect x="60" y="222" width="180" height="52" rx="4" fill="#e6fffa" stroke="#38b2ac"/>
+  <text x="150" y="242" text-anchor="middle" fill="#234e52" font-size="11" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">X  (seq_len � n_feat)</text>
+  <text x="150" y="260" text-anchor="middle" fill="#285e61" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">? Teacher and CNN</text>
+
+  <path d="M150 274 L150 298" stroke="#4a5568" stroke-width="1.5"/>
+
+  <!-- Statistical features -->
+  <rect x="60" y="302" width="180" height="52" rx="4" fill="#fefcbf" stroke="#d69e2e"/>
+  <text x="150" y="322" text-anchor="middle" fill="#744210" font-size="11" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Statistical Features</text>
+  <text x="150" y="340" text-anchor="middle" fill="#975a16" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">for LR baseline (flatten X)</text>
+
+  <!-- Signals in pipeline -->
+  <text x="150" y="383" text-anchor="middle" fill="#4a5568" font-size="11" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Signals in Pipeline</text>
+  <text x="150" y="403" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    <tspan>z</tspan><tspan font-size="7" baseline-shift="sub">T</tspan>
+    <tspan> (Teacher logits)</tspan>
+  </text>
+  <text x="150" y="420" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    <tspan>z</tspan><tspan font-size="7" baseline-shift="sub">C</tspan>
+    <tspan> (CNN logits)</tspan>
+  </text>
+  <text x="150" y="437" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">y (class label)</text>
+
+  <!-- Goals box -->
+  <rect x="55" y="455" width="190" height="155" rx="4" fill="#fff" stroke="#e2e8f0" stroke-dasharray="4 3"/>
+  <text x="150" y="476" text-anchor="middle" fill="#2d3748" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Goals</text>
+  <text x="65" y="497" fill="#4a5568" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">� Fast inference (small students)</text>
+  <text x="65" y="515" fill="#4a5568" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">� Transfer teacher knowledge (KD)</text>
+  <text x="65" y="533" fill="#4a5568" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">� Interpretable LR weights</text>
+
+  <!-- ?????????????????????????????????????????????????? -->
+  <!--  ?? Teacher                                   -->
+  <!-- ?????????????????????????????????????????????????? -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="110" width="220" height="520" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+  </g>
+
+  <rect x="300" y="125" width="180" height="36" rx="4" fill="#ebf8ff" stroke="#3182ce"/>
+  <text x="390" y="148" text-anchor="middle" fill="#2c5282" font-size="11" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Embed + L Blocks</text>
+
+  <text x="390" y="176" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    L � Transformer blocks
+  </text>
+
+  <rect x="305" y="188" width="170" height="120" rx="4" fill="#fff" stroke="#90cdf4" stroke-dasharray="5 4"/>
+  <text x="390" y="210" text-anchor="middle" fill="#2b6cb0" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Multi-Head Self-Attention</text>
+  <text x="390" y="228" text-anchor="middle" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Norm, MHA, Norm, FFN</text>
+  <text x="390" y="250" text-anchor="middle" fill="#718096" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Sequence model for</text>
+  <text x="390" y="266" text-anchor="middle" fill="#718096" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">encrypted traffic</text>
+
+  <path d="M390 308 L390 332" stroke="#2b6cb0" stroke-width="1.5"/>
+
+  <rect x="300" y="336" width="180" height="44" rx="4" fill="#bee3f8" stroke="#2b6cb0"/>
+  <text x="390" y="356" text-anchor="middle" fill="#1a365d" font-size="11" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Classification Head</text>
+  <text x="390" y="372" text-anchor="middle" fill="#2c5282" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    logits <tspan>z</tspan><tspan font-size="7" baseline-shift="sub">T</tspan>
+  </text>
+
+  <!-- Soft target box -->
+  <rect x="295" y="395" width="190" height="72" rx="4" fill="#fff5f5" stroke="#fc8181" stroke-dasharray="4 3"/>
+  <text x="390" y="416" text-anchor="middle" fill="#742a2a" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Soft Target</text>
+
+  <!-- Formula: p_T = softmax(z_T / tau)   drawn as inline SVG -->
+  <svg x="305" y="428" width="170" height="22" font-family="Cambria Math, 'Times New Roman', serif" font-style="italic">
+    <svg xmlns="http://www.w3.org/2000/svg" font-style="italic">
+      <!-- p_T -->
+      <text x="0" y="14" font-size="11" fill="#9b2c2c">
+        <tspan>p</tspan><tspan font-size="8" baseline-shift="sub">T</tspan>
+      </text>
+      <!-- = -->
+      <text x="12" y="14" font-size="11" fill="#9b2c2c"> = </text>
+      <!-- softmax -->
+      <text x="22" y="14" font-size="11" fill="#9b2c2c">softmax</text>
+      <!-- ( -->
+      <text x="58" y="14" font-size="11" fill="#9b2c2c">(</text>
+      <!-- z_T / tau -->
+      <text x="63" y="14" font-size="11" fill="#9b2c2c">
+        <tspan>z</tspan><tspan font-size="8" baseline-shift="sub">T</tspan>
+      </text>
+      <text x="76" y="14" font-size="11" fill="#9b2c2c"> / </text>
+      <text x="88" y="14" font-size="11" fill="#9b2c2c" font-style="italic">?</text>
+      <text x="97" y="14" font-size="11" fill="#9b2c2c">)</text>
+    </svg>
+  </svg>
+
+  <!-- tau = 2.0 -->
+  <svg x="305" y="452" width="170" height="18" font-family="Cambria Math, 'Times New Roman', serif">
+    <text x="0" y="13" font-size="9" fill="#9b2c2c" font-style="italic">? = 2.0</text>
+  </svg>
+
+  <text x="390" y="492" text-anchor="middle" fill="#4a5568" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Role</text>
+  <text x="390" y="512" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">High-capacity teacher;</text>
+  <text x="390" y="529" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">dark knowledge to students</text>
+  <text x="390" y="546" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">(larger disk footprint)</text>
+
+  <!-- Data arrow: Input -> Teacher -->
+  <path d="M260 248 L278 248" stroke="#2d3748" stroke-width="1.5" fill="none" marker-end="url(#arrBlk)"/>
+
+  <!-- ?????????????????????????????????????????????????? -->
+  <!--  ?? CNN Student                                -->
+  <!-- ?????????????????????????????????????????????????? -->
+  <g filter="url(#shadow)">
+    <rect x="520" y="110" width="220" height="520" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+  </g>
+
+  <rect x="540" y="125" width="180" height="140" rx="4" fill="#fff" stroke="#805ad5" stroke-dasharray="5 4"/>
+  <text x="630" y="148" text-anchor="middle" fill="#553c9a" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">1D CNN (Conv1d Stack)</text>
+  <text x="630" y="168" text-anchor="middle" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">BN, ReLU, pooling</text>
+  <text x="630" y="188" text-anchor="middle" fill="#718096" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Adaptive pool, dropout</text>
+  <text x="630" y="212" text-anchor="middle" fill="#553c9a" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Light student for deploy</text>
+
+  <path d="M630 265 L630 288" stroke="#553c9a" stroke-width="1.5"/>
+
+  <rect x="540" y="292" width="180" height="44" rx="4" fill="#e9d8fd" stroke="#6b46c1"/>
+  <text x="630" y="312" text-anchor="middle" fill="#44337a" font-size="11" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Linear Layer</text>
+  <text x="630" y="328" text-anchor="middle" fill="#553c9a" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    logits <tspan>z</tspan><tspan font-size="7" baseline-shift="sub">C</tspan>
+  </text>
+
+  <!-- KD loss box -->
+  <rect x="535" y="350" width="190" height="95" rx="4" fill="#f0fff4" stroke="#48bb78" stroke-dasharray="4 3"/>
+  <text x="630" y="372" text-anchor="middle" fill="#22543d" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">KD Loss (train_distill_packet)</text>
+
+  <!-- Formula line 1: L = ? � T� � D_KL(q_C ? p_T) -->
+  <svg x="537" y="387" width="186" height="18" font-family="Cambria Math, 'Times New Roman', serif" font-style="italic">
+    <text x="0" y="13" font-size="9.5" fill="#276749">L = </text>
+    <!-- ? -->
+    <text x="14" y="13" font-size="9.5" fill="#276749">?</text>
+    <text x="20" y="13" font-size="9.5" fill="#276749"> � </text>
+    <!-- T�  (temperature squared, drawn as T^2) -->
+    <text x="30" y="13" font-size="9.5" fill="#276749">T</text>
+    <text x="36" y="9" font-size="7" fill="#276749">2</text>
+    <text x="41" y="13" font-size="9.5" fill="#276749"> � </text>
+    <!-- D_KL -->
+    <text x="51" y="13" font-size="9.5" fill="#276749">D</text>
+    <text x="57" y="9" font-size="7" fill="#276749">KL</text>
+    <!-- (q_C ? p_T) -->
+    <text x="69" y="13" font-size="9.5" fill="#276749">(</text>
+    <text x="74" y="13" font-size="9.5" fill="#276749">q</text>
+    <text x="79" y="9" font-size="7" fill="#276749">C</text>
+    <text x="83" y="13" font-size="9.5" fill="#276749"> ? </text>
+    <text x="93" y="13" font-size="9.5" fill="#276749">p</text>
+    <text x="98" y="9" font-size="7" fill="#276749">T</text>
+    <text x="102" y="13" font-size="9.5" fill="#276749">)</text>
+  </svg>
+
+  <!-- Formula line 2: + (1??) � CE(z_C, y) -->
+  <svg x="537" y="405" width="186" height="18" font-family="Cambria Math, 'Times New Roman', serif" font-style="italic">
+    <text x="0" y="13" font-size="9.5" fill="#276749">+ (1 ? </text>
+    <text x="25" y="13" font-size="9.5" fill="#276749">?</text>
+    <text x="31" y="13" font-size="9.5" fill="#276749">) � CE(</text>
+    <text x="58" y="13" font-size="9.5" fill="#276749">z</text>
+    <text x="63" y="9" font-size="7" fill="#276749">C</text>
+    <text x="67" y="13" font-size="9.5" fill="#276749">, </text>
+    <text x="76" y="13" font-size="9.5" fill="#276749">y</text>
+    <text x="82" y="13" font-size="9.5" fill="#276749">)</text>
+  </svg>
+
+  <!-- Formula line 3: q_C = log_softmax(z_C / ?) -->
+  <svg x="537" y="424" width="186" height="18" font-family="Cambria Math, 'Times New Roman', serif" font-style="italic">
+    <text x="0" y="13" font-size="9.5" fill="#2f855a">q</text>
+    <text x="5" y="9" font-size="7" fill="#2f855a">C</text>
+    <text x="9" y="13" font-size="9.5" fill="#2f855a"> = log_softmax(</text>
+    <text x="55" y="13" font-size="9.5" fill="#2f855a">z</text>
+    <text x="60" y="9" font-size="7" fill="#2f855a">C</text>
+    <text x="64" y="13" font-size="9.5" fill="#2f855a"> / </text>
+    <text x="73" y="13" font-size="9.5" fill="#2f855a">?</text>
+    <text x="79" y="13" font-size="9.5" fill="#2f855a">)</text>
+  </svg>
+
+  <!-- KD arrow from teacher (dashed) -->
+  <path d="M500 250 Q510 200 528 200" stroke="#3182ce" stroke-width="1.2" fill="none" stroke-dasharray="6 4" opacity="0.85"/>
+  <text x="505" y="192" fill="#2b6cb0" font-size="8"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">from teacher</text>
+
+  <text x="630" y="472" text-anchor="middle" fill="#4a5568" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Role</text>
+  <text x="630" y="492" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Main deployable student</text>
+  <text x="630" y="509" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">smaller than teacher</text>
+
+  <!-- Data arrow: Teacher -> CNN -->
+  <path d="M260 248 L520 248" stroke="#2d3748" stroke-width="1.5" fill="none" marker-end="url(#arrBlk)"/>
+
+  <!-- ?????????????????????????????????????????????????? -->
+  <!--  ?? LR Student                                 -->
+  <!-- ?????????????????????????????????????????????????? -->
+  <g filter="url(#shadow)">
+    <rect x="760" y="110" width="220" height="520" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+  </g>
+
+  <rect x="780" y="125" width="180" height="100" rx="4" fill="#fff" stroke="#dd6b20" stroke-dasharray="5 4"/>
+  <text x="870" y="148" text-anchor="middle" fill="#9c4221" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Feature Rows for LR</text>
+  <text x="870" y="168" text-anchor="middle" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    <tspan>z</tspan><tspan font-size="7" baseline-shift="sub">T</tspan><tspan> only, or</tspan>
+  </text>
+  <text x="870" y="184" text-anchor="middle" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    concat(<tspan>z</tspan><tspan font-size="7" baseline-shift="sub">T</tspan>,
+           <tspan>z</tspan><tspan font-size="7" baseline-shift="sub">C</tspan>), or
+  </text>
+  <text x="870" y="204" text-anchor="middle" fill="#718096" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">vec(X) baseline</text>
+
+  <path d="M870 225 L870 248" stroke="#c05621" stroke-width="1.5"/>
+
+  <rect x="780" y="252" width="180" height="56" rx="4" fill="#feebc8" stroke="#dd6b20"/>
+  <text x="870" y="275" text-anchor="middle" fill="#7b341e" font-size="11" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Logistic Regression</text>
+
+  <!-- Formula: y = sigmoid(Wx + b)  drawn as inline SVG -->
+  <svg x="782" y="288" width="176" height="18" font-family="Cambria Math, 'Times New Roman', serif" font-style="italic">
+    <text x="0" y="13" font-size="11" fill="#9c4221">y</text>
+    <text x="8" y="13" font-size="11" fill="#9c4221"> = sigmoid(</text>
+    <text x="48" y="13" font-size="11" fill="#9c4221">W</text>
+    <text x="58" y="13" font-size="11" fill="#9c4221">x</text>
+    <text x="64" y="13" font-size="11" fill="#9c4221"> + </text>
+    <text x="75" y="13" font-size="11" fill="#9c4221">b</text>
+    <text x="81" y="13" font-size="11" fill="#9c4221">)</text>
+  </svg>
+
+  <!-- Fitted variants box -->
+  <rect x="775" y="320" width="190" height="115" rx="4" fill="#e6fffa" stroke="#319795" stroke-dasharray="4 3"/>
+  <text x="870" y="342" text-anchor="middle" fill="#234e52" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Fitted Variants (code)</text>
+
+  <!-- LR_plain -->
+  <svg x="783" y="358" width="174" height="16" font-family="Cambria Math, 'Times New Roman', serif" font-style="italic">
+    <text x="0" y="11" font-size="9" fill="#285e61">LR</text>
+    <tspan font-size="7" fill="#285e61">plain</tspan>
+    <text x="20" y="11" font-size="9" fill="#285e61"> : vec(</text>
+    <text x="42" y="11" font-size="9" fill="#285e61">X</text>
+    <text x="49" y="11" font-size="9" fill="#285e61">), </text>
+    <text x="63" y="11" font-size="9" fill="#285e61">y</text>
+  </svg>
+
+  <!-- LR_teacher -->
+  <svg x="783" y="374" width="174" height="16" font-family="Cambria Math, 'Times New Roman', serif" font-style="italic">
+    <text x="0" y="11" font-size="9" fill="#285e61">LR</text>
+    <tspan font-size="7" fill="#285e61">teacher</tspan>
+    <text x="25" y="11" font-size="9" fill="#285e61"> : </text>
+    <text x="33" y="11" font-size="9" fill="#285e61">z</text>
+    <text x="38" y="7" font-size="6.5" fill="#285e61">T</text>
+    <text x="42" y="11" font-size="9" fill="#285e61">, </text>
+    <text x="51" y="11" font-size="9" fill="#285e61">y</text>
+  </svg>
+
+  <!-- LR_co_distill -->
+  <svg x="783" y="390" width="174" height="16" font-family="Cambria Math, 'Times New Roman', serif" font-style="italic">
+    <text x="0" y="11" font-size="9" fill="#285e61">LR</text>
+    <tspan font-size="7" fill="#285e61">co_distill</tspan>
+    <text x="34" y="11" font-size="9" fill="#285e61"> : concat(</text>
+    <text x="66" y="11" font-size="9" fill="#285e61">z</text>
+    <text x="71" y="7" font-size="6.5" fill="#285e61">T</text>
+    <text x="75" y="11" font-size="9" fill="#285e61">, </text>
+    <text x="83" y="11" font-size="9" fill="#285e61">z</text>
+    <text x="88" y="7" font-size="6.5" fill="#285e61">C</text>
+    <text x="92" y="11" font-size="9" fill="#285e61">), </text>
+    <text x="109" y="11" font-size="9" fill="#285e61">y</text>
+  </svg>
+
+  <text x="870" y="414" text-anchor="middle" fill="#2c7a7b" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    Weights <tspan font-style="italic">W</tspan> for explanation
+  </text>
+
+  <!-- Arrows z_T,z_C -> LR (dashed) -->
+  <path d="M480 360 Q720 340 778 290" stroke="#3182ce" stroke-width="1.2" fill="none" stroke-dasharray="5 4" opacity="0.9"/>
+  <path d="M740 320 Q780 310 778 290" stroke="#6b46c1" stroke-width="1.2" fill="none" stroke-dasharray="5 4" opacity="0.9"/>
+  <text x="720" y="278" fill="#4a5568" font-size="8"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    <tspan>z</tspan><tspan font-size="6" baseline-shift="sub">T</tspan><tspan>, </tspan>
+    <tspan>z</tspan><tspan font-size="6" baseline-shift="sub">C</tspan>
+  </text>
+
+  <text x="870" y="457" text-anchor="middle" fill="#4a5568" font-size="10" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Role</text>
+  <text x="870" y="477" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Tiny, interpretable model</text>
+  <text x="870" y="494" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">mirrors teacher / CNN</text>
+  <text x="870" y="511" text-anchor="middle" fill="#718096" font-size="10"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">in logit feature space</text>
+
+  <!-- ?????????????????????????????????????????????????? -->
+  <!--  ?? Summary                                   -->
+  <!-- ?????????????????????????????????????????????????? -->
+  <g filter="url(#shadow)">
+    <rect x="1000" y="110" width="160" height="520" rx="6" fill="#f7fafc" stroke="#cbd5e0" stroke-width="1.5"/>
+  </g>
+
+  <text x="1080" y="135" text-anchor="middle" fill="#2d3748" font-size="10" font-weight="700"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Legend</text>
+  <rect x="1015" y="145" width="14" height="14" fill="#ebf8ff" stroke="#3182ce"/>
+  <text x="1035" y="156" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Teacher</text>
+  <rect x="1015" y="165" width="14" height="14" fill="#e9d8fd" stroke="#6b46c1"/>
+  <text x="1035" y="176" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">CNN student</text>
+  <rect x="1015" y="185" width="14" height="14" fill="#feebc8" stroke="#dd6b20"/>
+  <text x="1035" y="196" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">LR student</text>
+
+  <text x="1080" y="228" text-anchor="middle" fill="#2d3748" font-size="10" font-weight="700"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Pipeline</text>
+  <text x="1010" y="250" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">1. Train teacher (X, y)</text>
+  <text x="1010" y="268" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">2. Get <tspan>z</tspan><tspan font-size="7" baseline-shift="sub">T</tspan> on train set</text>
+  <text x="1010" y="286" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">3. KD train CNN</text>
+  <text x="1010" y="304" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">4. Get <tspan>z</tspan><tspan font-size="7" baseline-shift="sub">C</tspan> on train set</text>
+  <text x="1010" y="322" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">5. Fit LR (ablations)</text>
+
+  <text x="1080" y="356" text-anchor="middle" fill="#2d3748" font-size="10" font-weight="700"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Metrics (script)</text>
+  <text x="1010" y="378" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">� accuracy</text>
+  <text x="1010" y="394" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">� file size (KB)</text>
+  <text x="1010" y="410" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">� latency p50/p90</text>
+
+  <rect x="1010" y="430" width="140" height="180" rx="4" fill="#fff" stroke="#a0aec0" stroke-dasharray="4 3"/>
+  <text x="1080" y="453" text-anchor="middle" fill="#2d3748" font-size="9" font-weight="600"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Notation</text>
+  <text x="1020" y="473" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    <tspan font-style="normal">X</tspan><tspan>: packet sequence</tspan>
+  </text>
+  <text x="1020" y="489" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    <tspan font-style="normal">y</tspan><tspan>: class label</tspan>
+  </text>
+  <text x="1020" y="505" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    <tspan font-style="normal">z</tspan>
+    <tspan font-size="7" baseline-shift="sub">T</tspan>
+    <tspan>, </tspan>
+    <tspan font-style="normal">z</tspan>
+    <tspan font-size="7" baseline-shift="sub">C</tspan>
+    <tspan>: logits</tspan>
+  </text>
+  <text x="1020" y="521" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    <tspan font-style="italic">?</tspan><tspan>: temperature</tspan>
+  </text>
+  <text x="1020" y="537" fill="#4a5568" font-size="9"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">
+    <tspan font-style="italic">?</tspan><tspan>: KD mix weight</tspan>
+  </text>
+  <text x="1020" y="556" fill="#718096" font-size="8"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">Aligns with midterm</text>
+  <text x="1020" y="570" fill="#718096" font-size="8"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">report + train script</text>
+  <text x="1020" y="584" fill="#718096" font-size="8"
+    font-family="'Helvetica Neue', Arial, Helvetica, sans-serif" font-style="normal">train_distill_packet.py</text>
+
+</svg>

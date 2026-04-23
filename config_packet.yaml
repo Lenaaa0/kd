@@ -1,0 +1,33 @@
+# 蒸馏训练配置
+# Fusion Transformer 教师 + EBM 学生
+# 使用 all_flows 数据（ISCX, 无P2P, 24763样本）
+
+seed: 42
+
+output:
+  runs_dir: "runs_packet"
+
+data:
+  pkl_path: "data/packet_sequences/all_flows.pkl"
+  min_packets: 10   # 流最少包数（低于此则过滤）
+  max_packets: 100  # 包序列最大长度
+
+preprocess:
+  test_size: 0.2
+  standardize: true
+
+teacher:
+  model_type: "transformer"
+  d_model: 64
+  n_heads: 4
+  n_layers: 3
+  dropout: 0.1
+  ff_mult: 4
+  batch_size: 64
+  lr: 0.001
+  weight_decay: 0.00001
+  epochs: 30
+
+distill:
+  max_bins: 256
+  n_pca_components: 10  # PCA 压缩教师特征维度

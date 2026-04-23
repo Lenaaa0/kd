@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="Arial, Helvetica, sans-serif">
+
+  <!-- Title -->
+  <rect x="0" y="0" width="1200" height="60" fill="#1e3a5f"/>
+  <text x="600" y="40" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold">
+    Figure 1: Dual-Student Knowledge Distillation for Encrypted Traffic Classification
+  </text>
+
+  <!-- PP ;AF PP -->
+
+  <!-- pn�e -->
+  <rect x="40" y="80" width="200" height="480" rx="8" fill="#e6fffa" stroke="#38b2ac" stroke-width="2.5"/>
+  <text x="140" y="115" text-anchor="middle" fill="#234e52" font-size="13" font-weight="bold">Encrypted Traffic</text>
+  <rect x="60" y="135" width="160" height="40" rx="5" fill="#fff" stroke="#38b2ac" stroke-width="1.5"/>
+  <text x="140" y="160" text-anchor="middle" fill="#234e52" font-size="11">Packet sequence X</text>
+  <text x="140" y="195" text-anchor="middle" fill="#38b2ac" font-size="10">(L x D tensor)</text>
+  <rect x="60" y="215" width="160" height="40" rx="5" fill="#fff" stroke="#d69e2e" stroke-width="1.5"/>
+  <text x="140" y="240" text-anchor="middle" fill="#744210" font-size="11">Statistical features</text>
+  <text x="140" y="260" text-anchor="middle" fill="#975a16" font-size="9">for LR baseline</text>
+  <text x="140" y="300" text-anchor="middle" fill="#4a5568" font-size="11" font-weight="bold">Signals</text>
+  <text x="140" y="325" text-anchor="middle" fill="#718096" font-size="10">z_T (teacher logits)</text>
+  <text x="140" y="348" text-anchor="middle" fill="#718096" font-size="10">z_C (CNN logits)</text>
+  <text x="140" y="371" text-anchor="middle" fill="#718096" font-size="10">y (label)</text>
+  <text x="140" y="415" text-anchor="middle" fill="#4a5568" font-size="11" font-weight="bold">Goals</text>
+  <text x="55" y="442" fill="#4a5568" font-size="10">- Fast inference</text>
+  <text x="55" y="460" fill="#4a5568" font-size="10">- Transfer teacher knowledge</text>
+  <text x="55" y="478" fill="#4a5568" font-size="10">- Interpretable LR weights</text>
+
+  <!-- Teacher -->
+  <rect x="260" y="80" width="240" height="480" rx="8" fill="#ebf8ff" stroke="#3182ce" stroke-width="2.5"/>
+  <text x="380" y="115" text-anchor="middle" fill="#1e40af" font-size="13" font-weight="bold">Teacher (Transformer)</text>
+  <rect x="280" y="135" width="200" height="35" rx="5" fill="#fff" stroke="#3182ce" stroke-width="1.5"/>
+  <text x="380" y="158" text-anchor="middle" fill="#2c5282" font-size="11">Embed + L blocks</text>
+  <rect x="280" y="178" width="200" height="110" rx="5" fill="#fff" stroke="#90cdf4" stroke-dasharray="5,4"/>
+  <text x="380" y="202" text-anchor="middle" fill="#2b6cb0" font-size="11" font-weight="bold">Multi-head self-attention</text>
+  <text x="380" y="222" text-anchor="middle" fill="#4a5568" font-size="10">Norm, MHA, FFN</text>
+  <text x="380" y="242" text-anchor="middle" fill="#718096" font-size="10">Sequence model for</text>
+  <text x="380" y="258" text-anchor="middle" fill="#718096" font-size="10">encrypted traffic</text>
+  <rect x="280" y="296" width="200" height="35" rx="5" fill="#bee3f8" stroke="#2b6cb0" stroke-width="1.5"/>
+  <text x="380" y="318" text-anchor="middle" fill="#1a365d" font-size="11">Classification head</text>
+  <text x="380" y="360" text-anchor="middle" fill="#2c5282" font-size="12" font-weight="bold">logits z_T</text>
+  <rect x="285" y="380" width="190" height="65" rx="5" fill="#fff5f5" stroke="#fc8181" stroke-dasharray="4,3"/>
+  <text x="380" y="402" text-anchor="middle" fill="#742a2a" font-size="10" font-weight="bold">Soft target</text>
+  <text x="380" y="422" text-anchor="middle" fill="#9b2c2c" font-size="10">p_T = softmax(z_T / tau)</text>
+  <text x="380" y="438" text-anchor="middle" fill="#9b2c2c" font-size="9">tau = 2.0</text>
+  <text x="380" y="480" text-anchor="middle" fill="#4a5568" font-size="11" font-weight="bold">Role</text>
+  <text x="380" y="502" text-anchor="middle" fill="#718096" font-size="10">High-capacity teacher;</text>
+  <text x="380" y="520" text-anchor="middle" fill="#718096" font-size="10">dark knowledge to students</text>
+
+  <!-- CNN -->
+  <rect x="520" y="80" width="240" height="480" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/>
+  <text x="640" y="115" text-anchor="middle" fill="#4c1d95" font-size="13" font-weight="bold">Student-I (CNN)</text>
+  <rect x="540" y="135" width="200" height="120" rx="5" fill="#fff" stroke="#805ad5" stroke-dasharray="5,4"/>
+  <text x="640" y="158" text-anchor="middle" fill="#553c9a" font-size="11" font-weight="bold">1D CNN backbone</text>
+  <text x="640" y="178" text-anchor="middle" fill="#4a5568" font-size="10">Conv1d + BN + ReLU</text>
+  <text x="640" y="198" text-anchor="middle" fill="#4a5568" font-size="10">Adaptive pool + Dropout</text>
+  <text x="640" y="222" text-anchor="middle" fill="#553c9a" font-size="10">Light for deployment</text>
+  <rect x="540" y="263" width="200" height="35" rx="5" fill="#e9d8fd" stroke="#6b46c1" stroke-width="1.5"/>
+  <text x="640" y="285" text-anchor="middle" fill="#44337a" font-size="11">Linear classifier</text>
+  <text x="640" y="328" text-anchor="middle" fill="#553c9a" font-size="12" font-weight="bold">logits z_C</text>
+  <rect x="535" y="350" width="210" height="90" rx="5" fill="#f0fff4" stroke="#48bb78" stroke-dasharray="4,3"/>
+  <text x="640" y="372" text-anchor="middle" fill="#22543d" font-size="10" font-weight="bold">KD loss</text>
+  <text x="640" y="392" text-anchor="middle" fill="#276749" font-size="9">L = alpha * T^2 * KL(q_C || p_T)</text>
+  <text x="640" y="410" text-anchor="middle" fill="#276749" font-size="9">+ (1-alpha) * CE(z_C, y)</text>
+  <text x="640" y="428" text-anchor="middle" fill="#2f855a" font-size="9">q_C = log_softmax(z_C/tau)</text>
+  <text x="640" y="468" text-anchor="middle" fill="#4a5568" font-size="11" font-weight="bold">Role</text>
+  <text x="640" y="490" text-anchor="middle" fill="#718096" font-size="10">Main deployable student;</text>
+  <text x="640" y="508" text-anchor="middle" fill="#718096" font-size="10">smaller than teacher</text>
+
+  <!-- LR -->
+  <rect x="780" y="80" width="240" height="480" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+  <text x="900" y="115" text-anchor="middle" fill="#92400e" font-size="13" font-weight="bold">Student-II (LR)</text>
+  <text x="900" y="138" text-anchor="middle" fill="#9c4221" font-size="11" font-weight="bold">Logistic Regression</text>
+  <rect x="800" y="155" width="200" height="95" rx="5" fill="#fff" stroke="#dd6b20" stroke-dasharray="5,4"/>
+  <text x="900" y="178" text-anchor="middle" fill="#9c4221" font-size="10" font-weight="bold">Input for LR</text>
+  <text x="900" y="198" text-anchor="middle" fill="#4a5568" font-size="10">LR on vec(X), label y</text>
+  <text x="900" y="215" text-anchor="middle" fill="#4a5568" font-size="10">LR on z_T, label y</text>
+  <text x="900" y="232" text-anchor="middle" fill="#4a5568" font-size="10">LR on concat(z_T, z_C), y</text>
+  <rect x="800" y="258" width="200" height="50" rx="5" fill="#feebc8" stroke="#dd6b20" stroke-width="1.5"/>
+  <text x="900" y="280" text-anchor="middle" fill="#7b341e" font-size="11" font-weight="bold">Linear decision</text>
+  <text x="900" y="298" text-anchor="middle" fill="#9c4221" font-size="10">y = sigmoid(Wx + b)</text>
+  <rect x="795" y="318" width="210" height="85" rx="5" fill="#e6fffa" stroke="#319795" stroke-dasharray="4,3"/>
+  <text x="900" y="340" text-anchor="middle" fill="#234e52" font-size="10" font-weight="bold">Variants (train script)</text>
+  <text x="900" y="360" text-anchor="middle" fill="#285e61" font-size="9">LR_plain: vec(X) + y</text>
+  <text x="900" y="377" text-anchor="middle" fill="#285e61" font-size="9">LR_teacher: z_T + y</text>
+  <text x="900" y="394" text-anchor="middle" fill="#285e61" font-size="9">LR_co_distill: concat(z_T,z_C)+y</text>
+  <text x="900" y="415" text-anchor="middle" fill="#2c7a7b" font-size="9">weights W for explanation</text>
+  <text x="900" y="448" text-anchor="middle" fill="#4a5568" font-size="11" font-weight="bold">Role</text>
+  <text x="900" y="470" text-anchor="middle" fill="#718096" font-size="10">Interpretable student;</text>
+  <text x="900" y="488" text-anchor="middle" fill="#718096" font-size="10">mirrors teacher / CNN</text>
+
+  <!-- Metrics -->
+  <rect x="1040" y="80" width="140" height="480" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/>
+  <text x="1110" y="115" text-anchor="middle" fill="#166534" font-size="13" font-weight="bold">Metrics</text>
+  <text x="1110" y="155" text-anchor="middle" fill="#4a5568" font-size="11">Accuracy</text>
+  <text x="1110" y="200" text-anchor="middle" fill="#4a5568" font-size="11">Model size (KB)</text>
+  <text x="1110" y="260" text-anchor="middle" fill="#4a5568" font-size="11">Inference latency</text>
+  <text x="1110" y="320" text-anchor="middle" fill="#4a5568" font-size="11">Feature weights W</text>
+  <text x="1110" y="345" text-anchor="middle" fill="#718096" font-size="10">(interpretability)</text>
+
+  <!-- PP ��	� PP -->
+
+  <!-- Goal 1 -->
+  <rect x="40" y="580" width="340" height="220" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2.5"/>
+  <text x="210" y="615" text-anchor="middle" fill="#065f46" font-size="13" font-weight="bold">Goal 1: Lightweight</text>
+  <line x1="55" y1="635" x2="365" y2="635" stroke="#10b981" stroke-width="1.5"/>
+  <text x="210" y="660" text-anchor="middle" fill="#047857" font-size="11">CNN student replaces heavy Transformer</text>
+  <text x="210" y="685" text-anchor="middle" fill="#065f46" font-size="12" font-weight="bold">453.6 KB  �  10.0 KB</text>
+  <text x="210" y="715" text-anchor="middle" fill="#6b7280" font-size="10">Enables edge deployment</text>
+
+  <!-- Goal 2 -->
+  <rect x="400" y="580" width="340" height="220" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="570" y="615" text-anchor="middle" fill="#1e3a8a" font-size="13" font-weight="bold">Goal 2: Knowledge Transfer</text>
+  <line x1="415" y1="635" x2="725" y2="635" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="570" y="660" text-anchor="middle" fill="#1d4ed8" font-size="11">KD loss aligns CNN with teacher soft targets</text>
+  <text x="570" y="685" text-anchor="middle" fill="#1e3a8a" font-size="12" font-weight="bold">Teacher 85.0%  �  CNN 73.5%</text>
+  <text x="570" y="715" text-anchor="middle" fill="#6b7280" font-size="10">Dark knowledge preserved</text>
+
+  <!-- Goal 3 -->
+  <rect x="760" y="580" width="420" height="220" rx="8" fill="#fefce8" stroke="#f59e0b" stroke-width="2.5"/>
+  <text x="970" y="615" text-anchor="middle" fill="#78350f" font-size="13" font-weight="bold">Goal 3: Interpretability</text>
+  <line x1="775" y1="635" x2="1145" y2="635" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="970" y="660" text-anchor="middle" fill="#92400e" font-size="11">LR student via transparent weights W</text>
+  <text x="970" y="685" text-anchor="middle" fill="#78350f" font-size="12" font-weight="bold">LR co-distill: 85.4%  (0.8 KB)</text>
+  <text x="970" y="715" text-anchor="middle" fill="#6b7280" font-size="10">Decision basis directly analyzable</text>
+
+  <!-- PP ;�4(��	 PP -->
+
+  <!-- Data � Teacher -->
+  <line x1="240" y1="320" x2="258" y2="320" stroke="#38b2ac" stroke-width="3"/>
+  <polygon points="258,315 268,320 258,325" fill="#38b2ac"/>
+
+  <!-- Teacher � CNN -->
+  <line x1="500" y1="320" x2="518" y2="320" stroke="#3182ce" stroke-width="3"/>
+  <polygon points="518,315 528,320 518,325" fill="#3182ce"/>
+
+  <!-- CNN � LR -->
+  <line x1="760" y1="320" x2="778" y2="320" stroke="#7c3aed" stroke-width="3"/>
+  <polygon points="778,315 788,320 778,325" fill="#7c3aed"/>
+
+  <!-- LR � Metrics -->
+  <line x1="1020" y1="320" x2="1038" y2="320" stroke="#d97706" stroke-width="3"/>
+  <polygon points="1038,315 1048,320 1038,325" fill="#d97706"/>
+
+  <!-- PP KD Z�Teacher � CNN PP -->
+  <line x1="500" y1="175" x2="518" y2="175" stroke="#3182ce" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <polygon points="518,170 528,175 518,180" fill="#3182ce"/>
+  <rect x="545" y="160" width="130" height="28" rx="5" fill="#fff" stroke="none" opacity="0.85"/>
+  <text x="610" y="178" text-anchor="middle" fill="#3182ce" font-size="9" font-style="italic">KD (soft target, tau=2.0)</text>
+
+  <!-- PP LR OZ� PP -->
+  <!-- Teacher � � LR 
+ -->
+  <line x1="270" y1="420" x2="285" y2="420" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <path d="M285 420 Q720 200 778 320" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6,4" fill="none"/>
+  <!-- CNN � � LR 
+ -->
+  <line x1="740" y1="400" x2="755" y2="400" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <path d="M755 400 Q770 350 778 350" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6,4" fill="none"/>
+  <rect x="750" y="295" width="55" height="22" rx="4" fill="#fff" stroke="none" opacity="0.85"/>
+  <text x="777" y="310" text-anchor="middle" fill="#d97706" font-size="9" font-style="italic">z_T+z_C</text>
+
+  <!-- PP �� PP -->
+  <rect x="40" y="820" width="1140" height="65" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="60" y="848" fill="#475569" font-size="10" font-weight="bold">Legend:</text>
+  <rect x="110" y="836" width="14" height="14" rx="2" fill="#ebf8ff" stroke="#3182ce" stroke-width="1.5"/>
+  <text x="130" y="849" fill="#475569" font-size="10">Teacher</text>
+  <rect x="195" y="836" width="14" height="14" rx="2" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="215" y="849" fill="#475569" font-size="10">CNN student</text>
+  <rect x="310" y="836" width="14" height="14" rx="2" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="330" y="849" fill="#475569" font-size="10">LR student</text>
+  <line x1="420" y1="843" x2="445" y2="843" stroke="#3182ce" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="450" y="849" fill="#475569" font-size="10">KD / co-distill</text>
+  <line x1="560" y1="843" x2="585" y2="843" stroke="#38b2ac" stroke-width="3"/>
+  <polygon points="585,838 595,843 585,848" fill="#38b2ac"/>
+  <text x="600" y="849" fill="#475569" font-size="10">data flow</text>
+  <text x="800" y="849" fill="#94a3b8" font-size="9" font-style="italic">All numbers from midterm report (March 2026) + train_distill_packet.py</text>
+
+</svg>

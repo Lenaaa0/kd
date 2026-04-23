@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" version="26.2.13">
+  <diagram id="DualStudentKD" name="Dual-Student Knowledge Distillation">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="1"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="Dual-Student Knowledge Distillation for Encrypted Traffic Classification"
+          style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#1e3a5f;"
+          vertex="1" parent="1">
+          <mxGeometry x="300" y="16" width="800" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- 主流程行  y=70 ~ y=350                     -->
+        <!-- ══════════════════════════════════════════ -->
+
+        <!-- Encrypted Traffic -->
+        <mxCell id="enc_traffic" value="Encrypted&#xa;Traffic"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6fffa;strokeColor=#38b2ac;strokeWidth=2;fontSize=13;fontColor=#234e52;fontStyle=1;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="90" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Packet sequence -->
+        <mxCell id="seq_tensor" value="Packet sequence&#xa;X (L x D)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#38b2ac;strokeWidth=1.5;fontSize=11;fontColor=#234e52;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="165" width="160" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Stats features -->
+        <mxCell id="stats_feat" value="Statistical features&#xa;(for LR baseline)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#d69e2e;strokeWidth=1.5;fontSize=10;fontColor=#744210;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="230" width="160" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- ── Teacher (Transformer) ── -->
+        <mxCell id="teacher" value="Teacher (Transformer)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebf8ff;strokeColor=#3182ce;strokeWidth=2.5;fontSize=13;fontColor=#1e40af;fontStyle=1;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="220" y="80" width="260" height="240" as="geometry"/>
+        </mxCell>
+
+        <!-- Teacher internals (flat, no nesting) -->
+        <mxCell id="t_embed" value="Embed + L Transformer blocks&#xa;Multi-head self-attention, Norm, FFN"
+          style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=0;fontSize=11;fontColor=#2c5282;"
+          vertex="1" parent="1">
+          <mxGeometry x="225" y="95" width="250" height="38" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="t_head" value="Classification head"
+          style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#1a365d;fontStyle=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="225" y="148" width="250" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="t_zT" value="logits z_T"
+          style="text;strokeColor=none;fillColor=#bee3f8;align=center;verticalAlign=middle;fontSize=13;fontColor=#1e40af;fontStyle=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="225" y="182" width="250" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="t_soft" value="Soft target: p_T = softmax(z_T / tau)&#xa;tau = 2.0"
+          style="text;strokeColor=none;fillColor=#fff5f5;align=center;verticalAlign=middle;fontSize=11;fontColor=#9b2c2c;"
+          vertex="1" parent="1">
+          <mxGeometry x="225" y="222" width="250" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="t_role" value="High-capacity teacher;&#xa;dark knowledge to both students"
+          style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#64748b;"
+          vertex="1" parent="1">
+          <mxGeometry x="225" y="278" width="250" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- ── CNN Student ── -->
+        <mxCell id="cnn_student" value="Student-I (CNN)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f3ff;strokeColor=#7c3aed;strokeWidth=2.5;fontSize=13;fontColor=#4c1d95;fontStyle=1;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="510" y="80" width="260" height="240" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="c_cnn" value="1D CNN backbone&#xa;Conv1d + BN + ReLU + Adaptive pool + Dropout"
+          style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#553c9a;"
+          vertex="1" parent="1">
+          <mxGeometry x="515" y="95" width="250" height="38" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="c_linear" value="Linear classifier"
+          style="text;strokeColor=none;fillColor=#e9d8fd;align=center;verticalAlign=middle;fontSize=11;fontColor=#44337a;fontStyle=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="515" y="148" width="250" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="c_zC" value="logits z_C"
+          style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#4c1d95;fontStyle=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="515" y="182" width="250" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="c_kd" value="KD loss (train_distill_packet.py):&#xa;L = alpha * T^2 * KL(q_C || p_T)&#xa;+ (1-alpha) * CE(z_C, y)&#xa;q_C = log_softmax(z_C / tau)"
+          style="text;strokeColor=none;fillColor=#f0fff4;align=center;verticalAlign=middle;fontSize=10;fontColor=#276749;"
+          vertex="1" parent="1">
+          <mxGeometry x="515" y="222" width="250" height="62" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="c_role" value="Main deployable student"
+          style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#64748b;"
+          vertex="1" parent="1">
+          <mxGeometry x="515" y="295" width="250" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ── LR Student ── -->
+        <mxCell id="lr_student" value="Student-II (LR)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#d97706;strokeWidth=2.5;fontSize=13;fontColor=#92400e;fontStyle=1;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="800" y="80" width="280" height="240" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lr_input" value="Feature rows for LR (3 variants):&#xa;- LR on vec(X), label y&#xa;- LR on z_T, label y&#xa;- LR on concat(z_T, z_C), label y"
+          style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#9c4221;"
+          vertex="1" parent="1">
+          <mxGeometry x="805" y="95" width="270" height="62" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lr_model" value="y = sigmoid(Wx + b)&#xa;Transparent weights W"
+          style="text;strokeColor=none;fillColor=#feebc8;align=center;verticalAlign=middle;fontSize=11;fontColor=#7b341e;fontStyle=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="805" y="168" width="270" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="lr_role" value="Interpretable student;&#xa;mirrors teacher / CNN in logit space"
+          style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#64748b;"
+          vertex="1" parent="1">
+          <mxGeometry x="805" y="220" width="270" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- ── Metrics ── -->
+        <mxCell id="metrics" value="Metrics&#xa;&#xa;Accuracy&#xa;&#xa;Model size (KB)&#xa;&#xa;Inference latency&#xa;&#xa;Feature weights W&#xa;(interpretability)"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fdf4;strokeColor=#16a34a;strokeWidth=2.5;fontSize=12;fontColor=#166534;fontStyle=1;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="1110" y="80" width="180" height="240" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- 主箭头（全部连接到独立 ID，无嵌套）    -->
+        <!-- ══════════════════════════════════════════ -->
+
+        <!-- seq_tensor -> Teacher (data flow) -->
+        <mxCell id="arr1" value=""
+          style="endArrow=classic;html=1;rounded=0;strokeColor=#38b2ac;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;"
+          edge="1" parent="1" source="seq_tensor" target="teacher">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Teacher -> CNN (data flow) -->
+        <mxCell id="arr2" value=""
+          style="endArrow=classic;html=1;rounded=0;strokeColor=#3182ce;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;"
+          edge="1" parent="1" source="teacher" target="cnn_student">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- CNN -> LR (data flow) -->
+        <mxCell id="arr3" value=""
+          style="endArrow=classic;html=1;rounded=0;strokeColor=#7c3aed;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;"
+          edge="1" parent="1" source="cnn_student" target="lr_student">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- LR -> Metrics -->
+        <mxCell id="arr4" value=""
+          style="endArrow=classic;html=1;rounded=0;strokeColor=#d97706;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" parent="1" source="lr_student" target="metrics">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- KD dashed: t_zT (teacher) -> c_kd (CNN) -->
+        <mxCell id="arr_kd" value="KD (soft target, tau=2.0)"
+          style="endArrow=classic;html=1;rounded=0;dashed=1;strokeColor=#3182ce;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" parent="1" source="t_zT" target="c_kd">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- LR co-distill dashed: t_zT -> lr_input -->
+        <mxCell id="arr_zT_lr" value="z_T + z_C"
+          style="endArrow=classic;html=1;rounded=0;dashed=1;strokeColor=#d97706;strokeWidth=1.8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;"
+          edge="1" parent="1" source="t_zT" target="lr_input">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- LR co-distill dashed: c_zC -> lr_input -->
+        <mxCell id="arr_zC_lr" value=""
+          style="endArrow=classic;html=1;rounded=0;dashed=1;strokeColor=#d97706;strokeWidth=1.8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;"
+          edge="1" parent="1" source="c_zC" target="lr_input">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- 底部三个目标  y=360 ~ y=520                -->
+        <!-- ══════════════════════════════════════════ -->
+
+        <!-- Goal 1 -->
+        <mxCell id="goal1" value="Goal 1: Lightweight"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfdf5;strokeColor=#10b981;strokeWidth=2.5;fontSize=14;fontColor=#065f46;fontStyle=1;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="380" width="380" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="goal1_detail"
+          value="CNN student replaces heavy Transformer&#xa;&#xa;Model size:  453.6 KB  →  10.0 KB&#xa;&#xa;Enables edge deployment"
+          style="text;strokeColor=none;fillColor=#ecfdf5;align=center;verticalAlign=top;fontSize=11;fontColor=#047857;spacingTop=6;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="432" width="380" height="105" as="geometry"/>
+        </mxCell>
+
+        <!-- Goal 2 -->
+        <mxCell id="goal2" value="Goal 2: Knowledge Transfer"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#3b82f6;strokeWidth=2.5;fontSize=14;fontColor=#1e3a8a;fontStyle=1;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="440" y="380" width="380" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="goal2_detail"
+          value="KD loss aligns CNN with teacher soft targets&#xa;&#xa;Accuracy:  Teacher 85.0%  →  CNN 73.5%&#xa;&#xa;Dark knowledge preserved"
+          style="text;strokeColor=none;fillColor=#eff6ff;align=center;verticalAlign=top;fontSize=11;fontColor=#1d4ed8;spacingTop=6;"
+          vertex="1" parent="1">
+          <mxGeometry x="440" y="432" width="380" height="105" as="geometry"/>
+        </mxCell>
+
+        <!-- Goal 3 -->
+        <mxCell id="goal3" value="Goal 3: Interpretability"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefce8;strokeColor=#f59e0b;strokeWidth=2.5;fontSize=14;fontColor=#78350f;fontStyle=1;align=center;verticalAlign=middle;"
+          vertex="1" parent="1">
+          <mxGeometry x="850" y="380" width="440" height="48" as="geometry"/>
+        </mxCell>
+        <mxCell id="goal3_detail"
+          value="LR student via transparent weights W&#xa;&#xa;LR co-distill accuracy:  85.4%  (0.8 KB only)&#xa;&#xa;Decision basis directly analyzable"
+          style="text;strokeColor=none;fillColor=#fefce8;align=center;verticalAlign=top;fontSize=11;fontColor=#92400e;spacingTop=6;"
+          vertex="1" parent="1">
+          <mxGeometry x="850" y="432" width="440" height="105" as="geometry"/>
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!-- 图例 + 标注（底部）                       -->
+        <!-- ══════════════════════════════════════════ -->
+
+        <!-- 图例 -->
+        <mxCell id="legend_bg" value=""
+          style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#cbd5e0;strokeWidth=1;align=left;verticalAlign=top;spacingLeft=0;spacingTop=0;"
+          vertex="1" parent="1">
+          <mxGeometry x="1110" y="365" width="180" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="legend_title" value="Legend"
+          style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontColor=#475569;fontStyle=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1110" y="370" width="180" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="leg_teacher" value="Teacher (Transformer)"
+          style="text;strokeColor=none;fillColor=#ebf8ff;align=left;verticalAlign=middle;spacingLeft=10;fontSize=10;fontColor=#1e40af;"
+          vertex="1" parent="1">
+          <mxGeometry x="1110" y="400" width="175" height="22" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="leg_cnn" value="Student-I (CNN)"
+          style="text;strokeColor=none;fillColor=#f5f3ff;align=left;verticalAlign=middle;spacingLeft=10;fontSize=10;fontColor=#4c1d95;"
+          vertex="1" parent="1">
+          <mxGeometry x="1110" y="428" width="175" height="22" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="leg_lr" value="Student-II (LR)"
+          style="text;strokeColor=none;fillColor=#fef3c7;align=left;verticalAlign=middle;spacingLeft=10;fontSize=10;fontColor=#92400e;"
+          vertex="1" parent="1">
+          <mxGeometry x="1110" y="456" width="175" height="22" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="leg_kd" value="KD / co-distill (dashed)"
+          style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=10;fontSize=10;fontColor=#d97706;"
+          vertex="1" parent="1">
+          <mxGeometry x="1110" y="484" width="175" height="22" as="geometry"/>
+        </mxCell>
+
+        <!-- Pipeline 标注 -->
+        <mxCell id="pipeline_note" value="Pipeline:  1. Train teacher (X, y)  →  2. Get z_T on train set  →  3. KD train CNN  →  4. Get z_C  →  5. Fit LR (variants)"
+          style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=0;darkOpacity=0.05;fillColor=#fff2cc;strokeColor=#d6b656;align=left;size=12;fontSize=10;fontColor=#78350f;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="570" width="1260" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Notation -->
+        <mxCell id="notation_note"
+          value="Notation:  X = packet sequence tensor  |  y = class label  |  z_T, z_C = logits from teacher &amp; CNN  |  tau = temperature (2.0)  |  alpha = KD mix weight&#xa;&#xa;Source: Midterm report (March 2026) + train_distill_packet.py"
+          style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=0;darkOpacity=0.05;fillColor=#f8fafc;strokeColor=#cbd5e0;align=left;size=12;fontSize=9;fontColor=#64748b;"
+          vertex="1" parent="1">
+          <mxGeometry x="30" y="620" width="1260" height="50" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

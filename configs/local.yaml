@@ -1,0 +1,41 @@
+seed: 42
+
+data:
+  pkl_path: "data/packet_sequences/packet_sequences.pkl"  # 包序列数据
+  train_csv: "data/vpn_a1_60s.csv"
+  test_csv: null          # 先从 train 里按 test_size 切
+  label_col: "class1"      # 这个就是你截图里的标签列名
+  drop_cols: []           # 先不丢列
+  label_map: {}           # 先不合并标签
+
+preprocess:
+  test_size: 0.2        # 当 test_csv 不存在时，从 train_csv 切分
+  standardize: true
+  max_rows: null        # 调试用：限制读取行数（null 表示不限制）
+  
+teacher:
+  model_type: "tab_transformer"
+  dropout: 0.1
+  lr: 0.001
+  batch_size: 512
+  epochs: 60
+  weight_decay: 0.00001
+  d_model: 128
+  n_heads: 4
+  n_layers: 3
+  ff_mult: 4
+
+distill:
+  temperature: 3.0
+  alpha: 0.5
+  max_bins: 3           # 最小分箱数 (EBM 要求 >= 3)
+  n_pca_components: 10
+  n_stats_features: 1   # 1 特征 + 2 logits = 3 维
+
+eval:
+  latency_runs: 200     # 延迟测量重复次数（取中位数/分位数）
+  explain_samples: 20   # 导出解释的样本数
+  topk_features: 15
+
+output:
+  runs_dir: "runs"

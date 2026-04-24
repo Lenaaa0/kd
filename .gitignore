@@ -5,13 +5,6 @@ dist/
 build/
 venv/
 .venv/
-runs/
-runs_packet/
-*.ckpt
-*.pth
-*.pt
-*.pkl
-*.h5
 *.log
 logs/
 .ipynb_checkpoints/
@@ -21,4 +14,4 @@ logs/
 *.swo
 .DS_Store
 Thumbs.db
-data/
+# data/ and runs/ are intentionally tracked for experiment reproducibility

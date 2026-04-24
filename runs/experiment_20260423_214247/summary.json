@@ -1,0 +1,95 @@
+{
+  "timestamp": "20260423_214247",
+  "data": "data/flow_features/full_features.pkl",
+  "n_train": 17960,
+  "n_test": 4490,
+  "num_classes": 7,
+  "label_names": [
+    "browsing",
+    "chat",
+    "email",
+    "file_transfer",
+    "p2p",
+    "video",
+    "voip"
+  ],
+  "feat_names": [
+    "duration",
+    "min_fiat",
+    "min_biat",
+    "max_fiat",
+    "max_biat",
+    "mean_fiat",
+    "mean_biat",
+    "flowPktsPerSecond",
+    "flowBytesPerSecond",
+    "min_flowiat",
+    "max_flowiat",
+    "mean_flowiat",
+    "std_flowiat",
+    "min_active",
+    "mean_active",
+    "max_active",
+    "std_active",
+    "min_idle",
+    "mean_idle",
+    "max_idle",
+    "std_idle"
+  ],
+  "temperature": 4.0,
+  "alpha": 0.7,
+  "label_smoothing": 0.1,
+  "d_model": 256,
+  "n_layers": 6,
+  "results": {
+    "1-LR": {
+      "accuracy": 0.5868596881959911,
+      "macro_f1": 0.5137755004472869
+    },
+    "2-CNN": {
+      "accuracy": 0.8817371937639198,
+      "macro_f1": 0.843343265892805
+    },
+    "3-Teacher": {
+      "accuracy": 0.9069042316258352,
+      "macro_f1": 0.8697927972213517
+    },
+    "4-DistillCNN": {
+      "accuracy": 0.9102449888641425,
+      "macro_f1": 0.8744414541965421
+    },
+    "5-DistillCNN+LR": {
+      "accuracy": 0.610467706013363,
+      "macro_f1": 0.5419058278380241
+    }
+  },
+  "latency": {
+    "1-LR": {
+      "p50_ms": 0.04864600487053394,
+      "p90_ms": 0.05088199395686388,
+      "mean_ms": 0.09874064999166876
+    },
+    "2-CNN": {
+      "p50_ms": 0.2779880305752158,
+      "p90_ms": 0.2948329783976078,
+      "mean_ms": 0.3199353103991598
+    },
+    "3-Teacher": {
+      "p50_ms": 0.8564549498260021,
+      "p90_ms": 0.9358531096950173,
+      "mean_ms": 0.8617851440794766
+    },
+    "4-DistillCNN": {
+      "p50_ms": 0.25804201140999794,
+      "p90_ms": 0.28413801919668913,
+      "mean_ms": 0.2608179423259571
+    },
+    "5-DistillCNN+LR": {
+      "p50_ms": 0.03742799162864685,
+      "p90_ms": 0.03891007509082556,
+      "mean_ms": 0.037133299629203975
+    }
+  },
+  "distill_gain": 0.02850779510022272,
+  "lr_vs_distill_lr_gain": 0.023608017817371874
+}

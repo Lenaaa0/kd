@@ -1,0 +1,102 @@
+{
+  "timestamp": "20260423_212636",
+  "data": "data/flow_features/full_features.pkl",
+  "n_train": 17960,
+  "n_test": 4490,
+  "num_classes": 7,
+  "label_names": [
+    "browsing",
+    "chat",
+    "email",
+    "file_transfer",
+    "p2p",
+    "video",
+    "voip"
+  ],
+  "feat_names": [
+    "duration",
+    "min_fiat",
+    "min_biat",
+    "max_fiat",
+    "max_biat",
+    "mean_fiat",
+    "mean_biat",
+    "flowPktsPerSecond",
+    "flowBytesPerSecond",
+    "min_flowiat",
+    "max_flowiat",
+    "mean_flowiat",
+    "std_flowiat",
+    "min_active",
+    "mean_active",
+    "max_active",
+    "std_active",
+    "min_idle",
+    "mean_idle",
+    "max_idle",
+    "std_idle"
+  ],
+  "temperature": 4.0,
+  "alpha": 0.7,
+  "d_model": 256,
+  "n_layers": 6,
+  "results": {
+    "1-LR": {
+      "accuracy": 0.5868596881959911,
+      "macro_f1": 0.5137755004472869
+    },
+    "2-CNN": {
+      "accuracy": 0.7229398663697104,
+      "macro_f1": 0.6805840194294417
+    },
+    "3-CNN+LR": {
+      "accuracy": 0.5779510022271714,
+      "macro_f1": 0.523893127287259
+    },
+    "4-Teacher": {
+      "accuracy": 0.9057906458797328,
+      "macro_f1": 0.8652502174586884
+    },
+    "5-DistillCNN": {
+      "accuracy": 0.7746102449888641,
+      "macro_f1": 0.7008543736383205
+    },
+    "6-DistillCNN+LR": {
+      "accuracy": 0.6278396436525613,
+      "macro_f1": 0.5494048687684657
+    }
+  },
+  "latency": {
+    "1-LR": {
+      "p50_ms": 0.052732997573912144,
+      "p90_ms": 0.08747493848204613,
+      "mean_ms": 0.140005117864348
+    },
+    "2-CNN": {
+      "p50_ms": 0.16885297372937202,
+      "p90_ms": 0.2988550113514066,
+      "mean_ms": 0.20026098121888936
+    },
+    "3-CNN+LR": {
+      "p50_ms": 0.05006394349038601,
+      "p90_ms": 0.07565494161099195,
+      "mean_ms": 0.05652414518408477
+    },
+    "4-Teacher": {
+      "p50_ms": 1.0386520298197865,
+      "p90_ms": 1.6457369783893228,
+      "mean_ms": 1.1571882554562762
+    },
+    "5-DistillCNN": {
+      "p50_ms": 0.16561406664550304,
+      "p90_ms": 0.31555001623928547,
+      "mean_ms": 0.20526531676296145
+    },
+    "6-DistillCNN+LR": {
+      "p50_ms": 0.04871899727731943,
+      "p90_ms": 0.0507100485265255,
+      "mean_ms": 0.049231580924242735
+    }
+  },
+  "distill_gain": 0.05167037861915369
+}

@@ -1,0 +1,15 @@
+{
+  "teacher_acc": 0.8084291187739464,
+  "distill_cnn_acc": 0.8045977011494253,
+  "pure_cnn_acc": 0.8122605363984674,
+  "teacher_size_kb": 3174.7841796875,
+  "distill_cnn_size_kb": 826.017578125,
+  "pure_cnn_size_kb": 825.9326171875,
+  "teacher_latency_p50": 1.4056339859962463,
+  "teacher_latency_p90": 1.4778970507904887,
+  "distill_cnn_latency_p50": 0.19815901760011911,
+  "distill_cnn_latency_p90": 0.21706195548176765,
+  "pure_cnn_latency_p50": 0.20757305901497602,
+  "pure_cnn_latency_p90": 0.22237596567720175,
+  "num_classes": 6
+}

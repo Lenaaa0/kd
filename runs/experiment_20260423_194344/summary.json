@@ -1,0 +1,95 @@
+{
+  "timestamp": "20260423_194344",
+  "data": "data/flow_features/full_features.pkl",
+  "n_train": 17960,
+  "n_test": 4490,
+  "num_classes": 7,
+  "label_names": [
+    "browsing",
+    "chat",
+    "email",
+    "file_transfer",
+    "p2p",
+    "video",
+    "voip"
+  ],
+  "feat_names": [
+    "duration",
+    "min_fiat",
+    "min_biat",
+    "max_fiat",
+    "max_biat",
+    "mean_fiat",
+    "mean_biat",
+    "flowPktsPerSecond",
+    "flowBytesPerSecond",
+    "min_flowiat",
+    "max_flowiat",
+    "mean_flowiat",
+    "std_flowiat",
+    "min_active",
+    "mean_active",
+    "max_active",
+    "std_active",
+    "min_idle",
+    "mean_idle",
+    "max_idle",
+    "std_idle"
+  ],
+  "temperature": 4.0,
+  "alpha": 0.7,
+  "results": {
+    "LR": {
+      "accuracy": 0.48507795100222717,
+      "macro_f1": 0.4252274706505175
+    },
+    "Teacher": {
+      "accuracy": 0.7260579064587973,
+      "macro_f1": 0.6750056246155817
+    },
+    "CNN (No Distill)": {
+      "accuracy": 0.5403118040089087,
+      "macro_f1": 0.48907049667943064
+    },
+    "CNN (Distilled)": {
+      "accuracy": 0.555011135857461,
+      "macro_f1": 0.4939147761871413
+    },
+    "CNN + LR": {
+      "accuracy": 0.49643652561247215,
+      "macro_f1": 0.4360109264124695
+    }
+  },
+  "latency": {
+    "LR": {
+      "p50_ms": 0.04054803866893053,
+      "p90_ms": 0.04293501842767,
+      "p99_ms": 0.04753598477691412,
+      "mean_ms": 0.04009504686109722
+    },
+    "Teacher": {
+      "p50_ms": 0.8162480080500245,
+      "p90_ms": 0.8456939831376076,
+      "p99_ms": 1.0477410396561027,
+      "mean_ms": 0.8120185858570039
+    },
+    "CNN (No Distill)": {
+      "p50_ms": 0.09542203042656183,
+      "p90_ms": 0.10005198419094086,
+      "p99_ms": 0.12309395242482424,
+      "mean_ms": 0.09650880470871925
+    },
+    "CNN (Distilled)": {
+      "p50_ms": 0.09419606067240238,
+      "p90_ms": 0.09693601168692112,
+      "p99_ms": 0.10166200809180737,
+      "mean_ms": 0.09453834383748472
+    },
+    "CNN + LR": {
+      "p50_ms": 0.037066987715661526,
+      "p90_ms": 0.04536006599664688,
+      "p99_ms": 0.20142097491770983,
+      "mean_ms": 0.040638261125423014
+    }
+  }
+}

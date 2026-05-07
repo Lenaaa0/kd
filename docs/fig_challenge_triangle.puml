@@ -1,0 +1,36 @@
+@startuml Challenge-Triangle
+!define RECT class
+skinparam backgroundColor #FEFEFE
+skinparam defaultFontSize 13
+skinparam nodesep 40
+skinparam ranksep 50
+
+rectangle "识别精度" as acc #lightblue
+rectangle "推理速度" as spd #lightgreen
+rectangle "模型可解释性" as exp #lightyellow
+
+acc -[hidden]-> spd
+spd -[hidden]-> exp
+exp -[hidden]-> acc
+
+note bottom of acc
+  深度神经网络（DNN）
+  精度高，但参数量大
+  推理延迟：10–100 ms
+  决策过程不可见
+end note
+
+note bottom of spd
+  逻辑回归（LR）
+  参数量小，推理快
+  精度较低（<60%）
+  解释性强（线性系数）
+end note
+
+note bottom of exp
+  EBM / GAM
+  中等精度，可加性解释
+  推理速度较快
+  依赖特征工程
+end note
+@enduml
